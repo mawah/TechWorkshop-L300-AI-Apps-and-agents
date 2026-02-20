@@ -1,4 +1,4 @@
-
+# syntax=docker/dockerfile:1.6
 FROM python:3.12-slim
 
 # Upgrade pip and system packages to reduce vulnerabilities
@@ -17,12 +17,13 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-
-# Copy the rest of the code
+# Copy the rest of the code (only from src/ because the workflow build context is ./src)
 COPY . .
 
-# Copy .env file into the image (for python-dotenv)
-COPY .env .env
+# Create .env inside the image from the GitHub Actions secret named ENV
+# (provided by the workflow via docker/build-push-action `secrets: ENV=...`)
+RUN --mount=type=secret,id=ENV \
+    sh -c 'cat /run/secrets/ENV > /app/.env && chmod 600 /app/.env'
 
 # Expose the port (default FastAPI/uvicorn port)
 EXPOSE 8000
