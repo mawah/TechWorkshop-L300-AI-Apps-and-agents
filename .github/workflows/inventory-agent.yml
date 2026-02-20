@@ -6,7 +6,7 @@ on:
     paths:
       - 'src/app/agents/inventoryAgent_initializer.py'
       - 'src/app/tools/inventoryCheck.py'
-      - 'prompts\InventoryAgentPrompt.txt'
+      - 'src/prompts/InventoryAgentPrompt.txt'
       - '.github/workflows/inventory-agent.yml'
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
