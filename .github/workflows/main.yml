@@ -72,9 +72,8 @@ jobs:
           AZURE_AI_PROJECTS_KEY: ${{ env.FOUNDRY_KEY }}
 
           # Optional: if your code uses other Azure auth mechanisms too
-          AZURE_TENANT_ID: ${{ AZURE_CREDENTIALS.TENANT_ID }}
-          AZURE_CLIENT_ID: ${{ AZURE_CREDENTIALS.CLIENT_ID }}
-          AZURE_CLIENT_SECRET: ${{ AZURE_CREDENTIALS.CLIENT_SECRET }}
+          AZURE_TENANT_ID: ${{ env.TENANT_ID }}
+          AZURE_CLIENT_ID: ${{ env.CLIENT_ID }}
+          AZURE_CLIENT_SECRET: ${{ env.CLIENT_SECRET }}
         secrets: |
             ENV=${{ secrets.ENV }}
-            AZURE_CREDENTIALS=${{ secrets.AZURE_CREDENTIALS }}
