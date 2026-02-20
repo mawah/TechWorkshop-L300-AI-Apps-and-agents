@@ -60,6 +60,8 @@ jobs:
         env:
           AZURE_AI_PROJECTS_ENDPOINT: ${{ env.FOUNDRY_ENDPOINT }}
           AZURE_AI_PROJECTS_KEY: ${{ env.FOUNDRY_KEY }}
+        secrets: |
+            ENV=${{ secrets.ENV }}
 
       - name: Run Customer Loyalty Agent initializer
         run: |
@@ -73,3 +75,6 @@ jobs:
           AZURE_TENANT_ID: ${{ AZURE_CREDENTIALS.TENANT_ID }}
           AZURE_CLIENT_ID: ${{ AZURE_CREDENTIALS.CLIENT_ID }}
           AZURE_CLIENT_SECRET: ${{ AZURE_CREDENTIALS.CLIENT_SECRET }}
+        secrets: |
+            ENV=${{ secrets.ENV }}
+            AZURE_CREDENTIALS=${{ secrets.AZURE_CREDENTIALS }}
